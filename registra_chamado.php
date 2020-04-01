@@ -1,27 +1,29 @@
 <?php
-	echo '<pre>';
-	print_r($_POST);
-	echo '</pre>';
 
-	$arquivo=fopen('arquivo.hd', 'a');
+    echo '<pre>';
 
-	$titulo=str_replace('#', '-',$_POST);
-	$categoria=str_replace('#', '-',$_POST);
-	$descricao=str_replace('#', '-',$_POST);
+    print_r($_POST);
 
-	//pesquisa nas constantes a existencia do # e se houver modifica para -
+    echo '</pre>';
 
-	$texto =$_POST['titulo'].'#'.$_POST['categoria'].'#'.$_POST['descricao'].PHP_EOL;
-	
-	//abrindo o arquivo
+    //Montando o texto
+    $titulo = str_replace('#','-',$_POST['titulo']);
+    $categoria = str_replace('#','-',$_POST['categoria']);
+    $descricao = str_replace('#','-',$_POST['descricao']);
+    //implode('#',$_POST);
 
-	$arquivo=fopen('arquivo.hd', 'a');
-	//escrevendo o texto
-	fwrite($arquivo, $texto);
-	//fechando
-	fclose($arquivo);
-	//echo $texto;
+    $texto = $titulo.'#'.$categoria.'#'.$descricao.PHP_EOL;
+    
+    //http://php.net/manual/pt_BR/function.fopen.php
+    //Abrindo o arquivo
+    $arquivo = fopen('arquivo.hd','a');
 
-	header('Location: abrir_chamado.php');
+    //Escrevendo texto no arquivo
+    fwrite($arquivo,$texto);
 
+    //Fechando o arquivo
+    fclose($arquivo);
+
+    //echo $texto;
+    header('Location: abrir_chamado.php')
 ?>
