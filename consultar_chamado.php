@@ -8,7 +8,7 @@
 
 
   //abrir o arquivo hp
-  $arquivo = fopen('arquivo.hd','r');
+  $arquivo = fopen('../../app_help_desk/arquivo.hd','r');
 
   //enquanto houver registros ou lonhas a ser revcuperado
   while(!feof($arquivo)){// feof testa pelo fim do arquivo retorna true

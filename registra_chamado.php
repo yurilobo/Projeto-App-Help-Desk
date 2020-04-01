@@ -12,7 +12,7 @@
     
     //http://php.net/manual/pt_BR/function.fopen.php
     //Abrindo o arquivo
-    $arquivo = fopen('arquivo.hd','a');
+    $arquivo = fopen('../../app_help_desk/arquivo.hd','a');
 
     //Escrevendo texto no arquivo
     fwrite($arquivo,$texto);
