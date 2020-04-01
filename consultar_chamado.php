@@ -1,6 +1,8 @@
 <?php require_once "validador_acesso.php"?>
 
 <?php 
+
+
   //chamados
   $chamados=array();
 
@@ -46,6 +48,13 @@
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="logoff.php" class="nav-link">
+          SAIR
+          </a>
+        </li>
+      </ul>
     </nav>
 
     <div class="container">    
@@ -58,38 +67,37 @@
             </div>
             
             <div class="card-body">
-
-              <? foreach($chamados as $chamado ) {?>
-
-              <?php 
-
-              $chamado_dados =explode('#',$chamado);
-
-              if(count($chamado_dados) < 3){
-                continue;
-              }
-              echo '<pre>';
-              print_r($chamado_dados);
-              echo '</pre>';
-
-              ?>
-
               
+              <? foreach($chamados as $chamado){ ?>
+
+              <?
+                $chamado_dados = explode('#', $chamado);
+
+                if($_SESSION['perfil_id'] == 2){
+                  //apenas exibir se foi criado pelo mesmo usuario
+                  if($chamado_dados[0] != $_SESSION['id']){
+                    continue;
+                  }
+                }
+
+                if(count($chamado_dados) < 3){
+                  continue;
+                }
+              ?>
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title"><?=$chamado_dados[0]?></h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[1]?></h6>
-                  <p class="card-text"><?=$chamado_dados[0]?></p>
+                  <h5 class="card-title"><?= $chamado_dados[1]?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[2]?></h6>
+                  <p class="card-text"><?= $chamado_dados[3]?></p>
 
                 </div>
               </div>
 
               <? } ?>
-               
 
               <div class="row mt-5">
                 <div class="col-6">
-                  <a href="home.<?php  ?>" class="btn btn-lg btn-warning btn-block" type="submit">Voltar</a>
+                  <a href="home.php" class="btn btn-lg btn-warning btn-block">Voltar</a>
                 </div>
               </div>
             </div>
